@@ -7,8 +7,9 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 /*** 
- * `quotes` array 
+Variables
 ***/
+const backgroundColors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"];
 const quotes = [
   {
     quote : "Be yourself; everyone else is already taken.",
@@ -38,11 +39,19 @@ const quotes = [
   }
 ];
 
+
+/***
+ * `Random bakcground` function
+***/
+
+function getRandomBackground(){
+  let randomBg = Math.floor(Math.random()*7);
+  document.querySelector('body').style.backgroundColor = backgroundColors[randomBg];
+}
+
 /***
  * `getRandomQuote` function
 ***/
-
-
 function getRandomQuote(){
   let randomNumber = Math.floor(Math.random()*5);
   return quotes[randomNumber];
@@ -67,20 +76,14 @@ function printQuote(){
   }
   html += "</p>";
   document.getElementById('quote-box').innerHTML = html; 
+  getRandomBackground();
 }
+
+
 
 /***
- * `Random bakcground` function
-***/
-const backgroundColors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"];
-
-function getRandomBackground(){
-  let randomBg = Math.floor(Math.random()*7);
-  document.querySelector('body').style.backgroundColor = backgroundColors[randomBg];
-}
-document.getElementById('load-quote').addEventListener("click", getRandomBackground, false);
-
-
+ * SetInterval calls the prinQuote function every 10 seconds
+ ***/
 setInterval(printQuote,10000)
 /***
  * click event listener for the print quote button
